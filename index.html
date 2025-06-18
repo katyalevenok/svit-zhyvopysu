@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Світ живопису – Катя Левенок</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #BEEBFA; color: #333; }
+    header { background: #E0AAFF; color: white; text-align: center; padding: 1rem; font-family: 'Pattaya', cursive; font-size: 2.5rem; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    nav { display: flex; justify-content: center; gap: 1.5rem; padding: 1rem; background: #ffffffaa; backdrop-filter: blur(4px); box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+    nav a { text-decoration: none; font-weight: bold; color: #673ab7; }
+    .content { max-width: 900px; margin: 2rem auto; padding: 1rem; }
+    .bio { position: relative; display: flex; align-items: center; gap: 1rem; background: white; padding: 1rem; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .bio img { width: 150px; border-radius: 16px; object-fit: cover; }
+    .edit-btn { position: absolute; top: 10px; right: 10px; background: #E0AAFF; border: none; border-radius: 50%; padding: 5px; cursor: pointer; }
+    .edit-btn::before { content: "\270E"; font-size: 16px; color: white; }
+    .section { margin-top: 2rem; }
+    .section h2 { display: flex; justify-content: space-between; align-items: center; }
+    .add-btn { background: #E0AAFF; border: none; color: white; font-size: 1.5rem; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .gallery img { width: 100%; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+  <header>Світ живопису</header>
+  <nav>
+    <a href="#peyzazhi">Пейзажі</a>
+    <a href="#ulyubleni">Улюблені</a>
+    <a href="#inshe">Інше</a>
+    <a href="#vystavky">Виставки</a>
+    <a href="#usi">Усі картини</a>
+  </nav>
+  <div class="content">
+    <div class="bio">
+      <img src="your-photo.jpg" alt="Фото Каті Левенок">
+      <p id="bio-text">
+        Я художниця Катя Левенок з міста Суми. Почала малювати ще з раннього дитинства,
+        навчаюсь в 22 школі та займаюсь олійним живописом в народній студії "Світ фарб" під керівництвом Ольги Москаленко.
+        В мене було дві виставки: персональна "Симфонія кольорів" (8–20 квітня) і групова "Перлина України" (18–30 квітня).
+        І надалі буду продовжувати дивувати Вас своїми роботами.
+      </p>
+      <button class="edit-btn" onclick="editBio()"></button>
+    </div>
+
+    <div class="section" id="peyzazhi">
+      <h2>Пейзажі <button class="add-btn" onclick="addImage('peyzazhi')">+</button></h2>
+      <div class="gallery"></div>
+    </div>
+
+    <div class="section" id="ulyubleni">
+      <h2>Улюблені <button class="add-btn" onclick="addImage('ulyubleni')">+</button></h2>
+      <div class="gallery"></div>
+    </div>
+
+    <div class="section" id="inshe">
+      <h2>Інше <button class="add-btn" onclick="addImage('inshe')">+</button></h2>
+      <div class="gallery"></div>
+    </div>
+
+    <div class="section" id="vystavky">
+      <h2>Виставки <button class="add-btn" onclick="addImage('vystavky')">+</button></h2>
+      <div class="gallery"></div>
+    </div>
+
+    <div class="section" id="usi">
+      <h2>Усі картини <button class="add-btn" onclick="addImage('usi')">+</button></h2>
+      <div class="gallery"></div>
+    </div>
+  </div>
+
+  <script>
+    function addImage(sectionId) {
+      const url = prompt("Встав посилання на картину:");
+      if (url) {
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = "Нова картина";
+        document.querySelector(`#${sectionId} .gallery`).appendChild(img);
+      }
+    }
+
+    function editBio() {
+      const bio = document.getElementById('bio-text');
+      const newText = prompt("Введи нову біографію:", bio.innerText);
+      if (newText !== null) {
+        bio.innerText = newText;
+      }
+    }
+  </script>
+</body>
+</html>
